@@ -1,7 +1,7 @@
 #!/bin/sh
 CMD_BASE="$(readlink -f "$0")" || CMD_BASE="$0"; CMD_BASE="$(dirname "$CMD_BASE")"
 
-IMAGE="elifarley/docker-jenkins-uidfv:2-latest"
+IMAGE="elifarley/docker-jenkins-uidfv"
 
 docker pull "$IMAGE"
 
@@ -18,7 +18,7 @@ curl -fsL --connect-timeout 1 http://169.254.169.254/latest/meta-data/local-ipv4
 }
 
 #--log-opt awslogs-region=sa-east-1 \
-# 
+#
 
 dimg() { docker inspect "$1" |grep Image | grep -v sha256: | cut -d'"' -f4 ;}
 dstatus() { docker inspect "$1" | grep Status | cut -d'"' -f4 ;}
